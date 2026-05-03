@@ -3,71 +3,82 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Habbit App</title>
-    <link rel="stylesheet" href="./styles/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/x-icon" href="/image/favicon.ico" />
 </head>
 
 <body>
     <div class="app">
         <div class="panel">
-            <img class="logo" src="./images/logo.svg" alt="logo Habbit App">
-            <nav class="menu">
-                <div class="menu__list">
-                    <button class="menu__item menu__item-active">
-                        <img src="./images/Water.svg" alt="water">
-                    </button>
-                    <button class="menu__item">
-                        <img src="./images/food.svg" alt="food">
-                    </button>
-
+            <image class="logo" src="/image/logo.svg" alt="Логотип Habbit App">
+                <div>
+                    <nav class="menu">
+                        <div class="menu__list"></div>
+                        <button class="menu__add" onclick="toggleCreateModal()">
+                            <image src="/image/add.svg" alt="Добавить привычку">
+                        </button>
+                    </nav>
                 </div>
-                <button class="menu__add">
-                    <img src="./images/add.svg" alt="btn-add">
-                </button>
-            </nav>
         </div>
         <div class="content">
-            <header class="header">
-                <h1 class="h1">
-                    Отжимания
-                </h1>
+            <header>
+                <h1 class="h1"></h1>
                 <div class="progress">
                     <div class="progress__text">
                         <div class="progress__name">Прогресс</div>
-                        <div class="progress__percent">80%</div>
+                        <div class="progress__percent"></div>
                     </div>
                     <div class="progress__bar">
                         <div class="progress__cover-bar"></div>
                     </div>
                 </div>
             </header>
-            <main class="main">
-                <div>
-                    <div class="habbit">
-                        <div class="habbit__day">День 1</div>
-                        <div class="habbit__comment">Первый подход всегда даётся тяжело</div>
-                        <buttton class="habbit__delete">
-                            <img src="./images/delete.svg" alt="delete">
-                        </buttton>
-                    </div>
-                </div>
+            <main>
+                <div class="habbit__list"></div>
                 <div class="habbit">
-                    <div class="habbit__day">День 2</div>
-                    <form class="habbit__form">
-                        <input class="input_icon" type="text" id="form_input" placeholder="Комментарий">
-                        <img class="input__icon" src="./images/comment.svg" alt="comment">
-                        <buttton class="form__button">Готово</buttton>
+                    <div class="habbit__day habbit__day_form-next-day">День</div>
+                    <form class="habbit__form" onsubmit="addDays(event)">
+                        <input name="comment" class="input_icon" type="text" placeholder="Комментарий">
+                        <image class="input__icon" src="/image/comment.svg" alt="Комментарий">
+                            <button class="button">Готово</button>
                     </form>
                 </div>
             </main>
         </div>
+        <div class="cover cover_hidden">
+            <div class="popup">
+                <h2>Новая привычка</h2>
+                <div class="icon-label">Иконка</div>
+                <div class="icon-select">
+                    <button class="icon icon_active" onclick="setIcon(this, 'sport')">
+                        <image src="/image/sport.svg" alt="Спорт" />
+                    </button>
+                    <button class="icon" onclick="setIcon(this, 'water')">
+                        <image src="/image/water.svg" alt="Напитки" />
+                    </button>
+                    <button class="icon" onclick="setIcon(this, 'food')">
+                        <image src="/image/food.svg" alt="Еда" />
+                    </button>
+                </div>
+                <form class="popup__form" onsubmit="addHabbit(event)">
+                    <input type="text" name="name" placeholder="Название" />
+                    <input type="hidden" name="icon" value="sport">
+                    <input type="number" name="target" placeholder="Цель" />
+                    <button class="button" type="submit">Добавить</button>
+                </form>
+                <button class="popup__close" onclick="toggleCreateModal()">
+                    <image src="./image/close.svg" alt="Закрыть попап" />
+                </button>
+            </div>
+        </div>
     </div>
-
-    <script src="./scripts/app.js"></script>
+    <script src="scripts/app.js"></script>
 </body>
 
 </html>
